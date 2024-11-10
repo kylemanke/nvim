@@ -146,7 +146,7 @@ cmp.setup({
         ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<Tab>'] = cmp.mapping.confirm({ select = true }),
     }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
@@ -166,7 +166,7 @@ cmp.setup.cmdline({ '/', '?' }, {
 
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
-    surces = cmp.config.sources({
+    sources = cmp.config.sources({
         { name = 'path' }
     }, {
         { name = 'cmdline' }
