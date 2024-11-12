@@ -124,7 +124,7 @@ vim.keymap.set('n', '<leader>fj', builtin.jumplist, { desc = 'Telescope vim jump
 -- Setup lsps 
 require('mason').setup()
 require('mason-lspconfig').setup {
-    ensure_installed = { 'lua_ls', 'pyright' },
+    ensure_installed = { 'lua_ls' },
 }
 
 -- Setup cmp
