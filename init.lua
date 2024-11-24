@@ -140,8 +140,8 @@ cmp.setup({
         documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
-        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-d>'] = cmp.mapping.scroll_docs(4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-g>'] = cmp.mapping.scroll_docs(4),
         ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
         ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
         ['<C-Space>'] = cmp.mapping.complete(),
@@ -173,6 +173,9 @@ cmp.setup.cmdline(':', {
     }),
     matching = { disallow_symbol_nonprefix_matching = false }
 })
+
+-- Setup lsp key mappings 
+vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code actions' })
 
 -- Setup lsp servers
 -- Get default capabilities for cmp 
@@ -212,6 +215,11 @@ require ('lspconfig').lua_ls.setup {
 
 -- Setup pyright
 require ('lspconfig').pyright.setup{
+    capabilities = capabilities
+}
+
+-- Setup clangd 
+require ('lspconfig').clangd.setup {
     capabilities = capabilities
 }
 
