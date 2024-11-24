@@ -1,3 +1,7 @@
+-- Disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Setup tabs 
 vim.o.tabstop = 4 -- A TAB character looks like 4 spaces
 vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
@@ -78,6 +82,7 @@ require("lazy").setup({
             --tag = 'v2.*',
         },
         'saadparwaiz1/cmp_luasnip',
+        'nvim-tree/nvim-tree.lua',
     },
   },
   -- Configure any other settings here. See the documentation for more details.
@@ -231,6 +236,10 @@ require('lspconfig').dartls.setup {
 
 -- Setup autoclose 
 require('autoclose').setup()
+
+-- Setup nvim-tree
+vim.keymap.set('n', '<leader>o', ':NvimTreeToggle<CR>', { desc = 'Toggle NvimTree', })
+require('nvim-tree').setup()
 
 -- Setup colorscheme
 vim.cmd.colorscheme "catppuccin"
