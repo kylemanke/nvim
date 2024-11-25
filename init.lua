@@ -3,6 +3,7 @@ vim.o.tabstop = 4 -- A TAB character looks like 4 spaces
 vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
 vim.o.softtabstop = 4 -- Number of spaces inserted instead of a TAB character
 vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
+vim.o.mouse = ''
 vim.wo.wrap = false
 
 -- Set up visuals 
@@ -58,9 +59,9 @@ require("lazy").setup({
                 local configs = require("nvim-treesitter.configs")
                 require('nvim-treesitter.install').compiler = { 'g++' }
                 configs.setup({
-                    ensure_installed = { "c", "lua", "vimdoc" },
+                    ensure_installed = { "lua", "vimdoc" },
                     sync_installed = false,
-                    highlight = { enable = true },
+                    highlight = { enable = false },
                     indent = { enable = false },
                 })
             end
@@ -229,3 +230,6 @@ vim.cmd.colorscheme "catppuccin"
 
 -- Setup completeopt
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
+
+-- Setup autofolding 
+-- require('auto_folding').setup()
