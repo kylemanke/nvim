@@ -1,3 +1,7 @@
+-- Disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Setup tabs 
 vim.o.tabstop = 4 -- A TAB character looks like 4 spaces
 vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
@@ -79,6 +83,7 @@ require("lazy").setup({
             --tag = 'v2.*',
         },
         'saadparwaiz1/cmp_luasnip',
+        'nvim-tree/nvim-tree.lua',
     },
   },
   -- Configure any other settings here. See the documentation for more details.
@@ -142,8 +147,8 @@ cmp.setup({
         documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
-        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-d>'] = cmp.mapping.scroll_docs(4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-g>'] = cmp.mapping.scroll_docs(4),
         ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
         ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
         ['<C-Space>'] = cmp.mapping.complete(),
@@ -175,6 +180,9 @@ cmp.setup.cmdline(':', {
     }),
     matching = { disallow_symbol_nonprefix_matching = false }
 })
+
+-- Setup lsp key mappings 
+vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code actions' })
 
 -- Setup lsp servers
 -- Get default capabilities for cmp 
@@ -217,6 +225,11 @@ require ('lspconfig').pyright.setup{
     capabilities = capabilities
 }
 
+-- Setup clangd 
+require ('lspconfig').clangd.setup {
+    capabilities = capabilities
+}
+
 -- Setup dartls
 require('lspconfig').dartls.setup {
     capabilities = capabilities
@@ -224,6 +237,10 @@ require('lspconfig').dartls.setup {
 
 -- Setup autoclose 
 require('autoclose').setup()
+
+-- Setup nvim-tree
+vim.keymap.set('n', '<leader>o', ':NvimTreeToggle<CR>', { desc = 'Toggle NvimTree', })
+require('nvim-tree').setup()
 
 -- Setup colorscheme
 vim.cmd.colorscheme "catppuccin"
